@@ -20,7 +20,11 @@ func TestUpdateProfile(t *testing.T) {
 
 	updateProfile(currentProfile, updatedProfile)
 
+	// saveName takes 3 seconds to complete
+	// we have to wait more than 3 seconds
+	// if waitFor is less then or equal 3 seconds then it fails
+
 	assert.Eventually(t, func() bool {
 		return currentProfile.name == updatedProfile.name
-	}, 1*time.Second, 100*time.Millisecond)
+	}, 4*time.Second, 100*time.Millisecond)
 }

@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-var doubleFunc = double
+var executeFunc = double
 
 func double(val int) int {
 	return val * 2
@@ -13,5 +13,5 @@ func double(val int) int {
 
 func doubleNumber(input int) {
 	time.Sleep(1 * time.Second) // Simulate work
-	fmt.Println("F1", doubleFunc(input))
+	fmt.Println("F1", executeFunc(input))
 }

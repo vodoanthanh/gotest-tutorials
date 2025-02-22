@@ -15,8 +15,8 @@ func TestDoubleNumber(t *testing.T) {
 	var returnValue int
 
 	// Mock double function
-	originalDouble := doubleFunc
-	doubleFunc = func(val int) int {
+	originalDouble := executeFunc
+	executeFunc = func(val int) int {
 		mu.Lock()
 		defer mu.Unlock()
 		calledWith = val
@@ -24,7 +24,7 @@ func TestDoubleNumber(t *testing.T) {
 		wg.Done() // Notify that the mock function was called
 		return returnValue
 	}
-	defer func() { doubleFunc = originalDouble }() // Restore original function
+	defer func() { executeFunc = originalDouble }() // Restore original function
 
 	// Call doubleNumber asynchronously
 	go doubleNumber(5)
