@@ -9,8 +9,10 @@ import (
 
 // Test function
 func TestUpdateProfile(t *testing.T) {
+	firstName := "Name 1"
+
 	currentProfile := &Profile{
-		name: "Name 1",
+		name: firstName,
 		age:  28,
 	}
 	updatedProfile := Profile{
@@ -25,6 +27,10 @@ func TestUpdateProfile(t *testing.T) {
 	// if waitFor is less then or equal 3 seconds then it fails
 
 	assert.Eventually(t, func() bool {
-		return currentProfile.name == updatedProfile.name
+		if currentProfile.name != firstName {
+			assert.Equal(t, updatedProfile.name, currentProfile.name)
+			return true
+		}
+		return false
 	}, 4*time.Second, 100*time.Millisecond)
 }
